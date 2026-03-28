@@ -30,6 +30,11 @@ cd ..
 pip3 install -U -r requirements.txt
 ```
 
+## Weights
+Download the weights speciied on the official [DINOv3 Repository](https://github.com/facebookresearch/dinov3.git) for the respective module that you want to work with and add them to `weights` folder.
+
+NOTE: The download of weights requires approval from Meta.
+
 ## Datset Download anf Generation
 To download anf generate mitochondrial data locally run:
 ```

@@ -1,4 +1,6 @@
 task1/
+datasets/*.npy
+embeddings/*.pth
 weights/*.pth
 new_test_env/
 dinov3/
