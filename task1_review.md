@@ -19,7 +19,7 @@ The training loop assumes that the validation run only happens per epoch. This i
 The logging of the run could be handled better. It is necessary to log training config along with the loss/performance data to be able to distinguish between experiments.
 
 
-Instead of using matplotlib and simple array to log training loss, it is much better to use backages like `TensorBoard` or `WeightsAndBiases (wandb)` for this purpose.
+Instead of using matplotlib and simple array to log training loss, it is much better to use opensource packages like `TensorBoard` or `WeightsAndBiases (wandb)` for this purpose.
 
 It is also better in log `grad_norm` along with training loss to check for numerical instability or `gradient_explosions`
 
