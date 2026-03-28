@@ -6,3 +6,4 @@ new_test_env/
 dinov3/
 __pycache__
 .DS_Store
+scripts/__pycache__/

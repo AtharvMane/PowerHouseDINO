@@ -1,11 +1,11 @@
 import numpy as np
 import torch
 
-from dataset import MitochondrialDataset
+from lib.dataset import MitochondrialDataset
 
 from torch.utils.data import DataLoader
 from typing import Any
-import config as cfg
+import configs.config as cfg
 from tqdm import tqdm
 from torch import nn
 from matplotlib import pyplot as plt

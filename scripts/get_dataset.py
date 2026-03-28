@@ -3,7 +3,7 @@ import dask.array as da
 import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-import config as cfg
+import configs.config as cfg
 
 
 def get_image_and_segmentation_maps(group: da.array)-> tuple[np.array, np.array]:

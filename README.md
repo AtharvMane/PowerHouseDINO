@@ -52,7 +52,7 @@ NOTE: The download of weights requires approval from Meta.
 ## Dataset Download anf Generation
 To download and generate mitochondrial data locally run:
 ```
-python3 get_datasets.py
+python3 -m scripts.get_datasets
 ```
 This script will populate the `datasets/` folder with `.npy` files containing image slices taken from a single `Y-Slice` in the very middle of the datasets provided in the `DATASET_LINKS` field in `config.py`. For each dataset 3 kinds of files are created. A type of files that contain mitochondrion at the center (`{dataset_name}_image_slices.npy`), another type that contain the segmentation maps (`{dataset_name}_seg_slices.npy`), and files containing a set of random slices of the single `Y-Slice` from each dataset (`{dataset_name}_control_image_slices.npy`). More datasets can be added, the size of images in each datasets can be changed and the number of control images can be changed by changing the fields in ```config.py```
 
@@ -60,7 +60,7 @@ This script will populate the `datasets/` folder with `.npy` files containing im
 ## Embeddings, inter-embedding distance
 Now, to get embeddings, run:
 ```
-python3 get_embeddings.py
+python3 -m scripts.get_embeddings
 ```
 This script runs a the dinov3 model on each image in each dataset and its control set. Thus it results in N*2 different (@, positive and control, each for a given dataset) embeddings which are then populated in the `embeddings/` folder as `.pth` files. After this, it also calculates a `distance` metric between a query vector, (the `cls_token` of the first dataset) and every other dataset. Then plots the obtained `distance_metric` on a `matplotlib` plot as well as saved to `{distance_type}.png
 All the hyperparameters, including the batch_size, applied transforms, effective patch size, distance metric, as well as accelerating device can be found in `config.py`.
