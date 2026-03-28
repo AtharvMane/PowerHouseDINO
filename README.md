@@ -12,7 +12,7 @@ Task 1 Answers can be found [here](./task1_review.md)
 [Massoud et. al.](https://arxiv.org/html/2602.18614) after empirical studies show that for dense predictions, smaller patch sizes work better than a large patch size of 16. This is because the only advantage of having large patch size is larger receptive field. But transformers solve this problem because the find relations between all pairs of patches. Instead, smaller patch sizes in ViTs get the advantage of larger resolution thus being able to capture more fine grained information. Empiricallt ehy find patch-sizes between 2-4 the most performant.
 
 ## Per Pixel/Voxel Embedding
-DINOv3 is pretrained on `patch_size = 16`.  It is now difficult to change this directly because updating the batch size wuld clash with the learned weights from the model. Thus we use the upsampling trick. The `resize_image_for_patch_size` does exatly this. and its [documentation](./documentation.md/#🅵-powerhousedinodatasetresize_image_for_patch_size) explains it better.
+DINOv3 is pretrained on `patch_size = 16`.  It is now difficult to change this directly because updating the batch size would clash with the learned weights from the model. Thus we use the upsampling trick. The `resize_image_for_patch_size` does exatly this. and its [documentation](./documentation.md/#🅵-powerhousedinodatasetresize_image_for_patch_size) explains it better.
 
 
 ## Multi-Query Visualization
