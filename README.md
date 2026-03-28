@@ -93,3 +93,6 @@ We can use this property to improve the model using Self Supervised Learning wit
 
 # Documentation
 A more detailed documentation is given at [documentation.md](./documentation.md)
+
+# LLM Usage Notice
+LLMs have only been used to create docstrings for specific functions and the outputs have been throughly checked.
