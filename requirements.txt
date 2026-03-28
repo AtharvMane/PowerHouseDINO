@@ -1,0 +1,4 @@
+fsspec[s3]
+zarr
+dask
+matplotlib
