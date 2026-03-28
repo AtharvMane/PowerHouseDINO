@@ -31,6 +31,7 @@ git clone --recursive https://github.com/AtharvMane/PowerHouseDINO.git
 This repository uses [DINOv3](https://github.com/facebookresearch/dinov3.git) as a submodule. The recursive clone will also clone the DINOv3 submodule. If you have already cloned the repository and the `dinov3/` folder is empty, use:
 ```
 git submodule update --init --recursive
+cd PowerHouseDINO
 ```
 
 ## Initialization and Dependency installation
@@ -49,7 +50,7 @@ Download the weights speciied on the official [DINOv3 Repository](https://github
 
 NOTE: The download of weights requires approval from Meta.
 
-## Dataset Download anf Generation
+## Dataset Download and Generation
 To download and generate mitochondrial data locally run:
 ```
 python3 -m scripts.get_datasets

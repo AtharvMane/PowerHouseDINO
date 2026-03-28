@@ -50,6 +50,7 @@ def get_image_and_segmentation_maps(group: da.array)-> tuple[np.array, np.array]
 def get_control_regions(img: np.array, num_regions: int, size_:int):
     """
     Extracts a specified number of random square control regions (patches) from an image.
+    The control regions essential act as 'negatives' to the mitochondrial data.
 
     This function generates random top-left coordinates and slices square patches 
     of a fixed size from the input image. It returns both the extracted pixel 
@@ -65,13 +66,8 @@ def get_control_regions(img: np.array, num_regions: int, size_:int):
             - control_slices (list of np.array): A list of the extracted image patches.
             - start_indices (np.array): An array of shape (num_regions, 2) containing 
               the [row, col] starting coordinates for each patch.
-
-    Note:
-        The function uses `np.random.random_integers`, which is technically 
-        deprecated in newer NumPy versions. For modern code, consider 
-        switching to `np.random.randint`.
     """
-    start_indices = np.random.random_integers(low = 0, high = min(img.shape[0], img.shape[1])-size_-1, size=(num_regions, 2))
+    start_indices = np.random.randint(low = 0, high = min(img.shape[0], img.shape[1])-size_-1, size=(num_regions, 2))
     control_slices = []
     for start_index in start_indices:
         control_slice = img[start_index[0]:start_index[0]+size_, start_index[1]:start_index[1]+size_]
@@ -112,8 +108,10 @@ def calc_bounds(min_, max_, size_, bound_max):
         raise RuntimeError("Impossible Scenario, min_, max_ out of bounds")
     
     if min_new==0:
+        # If the slice goes beyond left/top edge, start from left/top edge to size_
         return 0, size_
     elif max_new==bound_max:
+        # If the slice goes beyond right/bottom edge, start from right/bottom edge to size_
         return bound_max-size_, bound_max
     else:
         return min_new, max_new
@@ -126,7 +124,7 @@ def get_final_data_list(img_map: np.array, seg_map: np.array, max_size : int = 2
     This function iterates through every unique object ID in the segmentation map, calculates 
     its spatial bounds, and extracts a cropped slice from both the image and the mask. 
     The crops are adjusted via a helper function (`calc_bounds`) to ensure they meet 
-    specific size constraints.
+    specific size and positioning constraints.
 
     Args:
         img_map (np.array): The source grayscale or multi-channel image of the biological sample.
@@ -196,7 +194,7 @@ if __name__=='__main__':
         mitochondria_image_slices, mitochondria_seg_slices, heights, widths = get_final_data_list(
             img_map, seg_map, max_size = cfg.DATASETS_IMAGE_SIZE
         )
-        control_image_slices = get_control_regions(img_map, 80, size_=cfg.DATASETS_IMAGE_SIZE)
+        control_image_slices = get_control_regions(img_map, cfg.NUM_CONTROL_IMAGES_PER_DATASET, size_=cfg.DATASETS_IMAGE_SIZE)
         np.save(f"./datasets/{name}_image_slices", mitochondria_image_slices)
         np.save(f"./datasets/{name}_control_image_slices", control_image_slices)
         np.save(f"./datasets/{name}_mitochondria_seg_slices", mitochondria_seg_slices)

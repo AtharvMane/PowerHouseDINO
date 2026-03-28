@@ -51,6 +51,7 @@ def get_dataset_embeddings(model, dataloader, device):
     dataset_patch_tokens = []
     dataset_cls_tokens = []
     model = model.to(device)
+    model.eval()
     with torch.no_grad():
         for i, img in tqdm(enumerate(dataloader)):
             img = img.to(device)
@@ -132,7 +133,7 @@ if __name__=="__main__":
 
     model = get_model(
         model_repo_path = cfg.DINOV3_PATH,
-        model_type= cfg.DINOV_MODEL_TYPE,
+        model_type= cfg.DINOV3_MODEL_TYPE,
         model_weights_path = cfg.DINOV3_WEIGHTS_PATH
     )
 

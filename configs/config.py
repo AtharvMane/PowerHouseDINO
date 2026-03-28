@@ -23,7 +23,7 @@ NUM_CONTROL_IMAGES_PER_DATASET = 80
 #Parameters for get_embeddings.py
 DINOV3_PATH= "dinov3/"
 DINOV3_WEIGHTS_PATH = "./weights/dinov3_vits16_pretrain_lvd1689m-08c60483.pth"
-DINOV_MODEL_TYPE = 'dinov3_vits16'
+DINOV3_MODEL_TYPE = 'dinov3_vits16'
 
 BATCH_SIZE = 1
 EFFECTIVE_PATCH_SIZE = 4
@@ -38,4 +38,4 @@ TRANSFORMS =  T.Compose([
 
 DISTANCE_METRIC = DistanceMetric.COSINE_DISTANCE
 
-DEVICE = "mps"
+DEVICE = None
